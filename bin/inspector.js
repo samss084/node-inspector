@@ -3,53 +3,50 @@
 var DebugServer = require('../lib/debug-server').DebugServer,
     fs = require('fs'),
     path = require('path'),
-    Config = require('../lib/config'),
+     = ('../lib/config'),
     packageJson = require('../package.json');
 
-var config = new Config(process.argv.slice(2));
+var config = Config(process.argv.slice(2));
 
 if (config.help) {
   config.showHelp();
-  process.exit();
+  process.enter();
 }
 
 if (config.version) {
   config.showVersion();
-  process.exit();
+  process.enter();
 }
 
-process.on('SIGINT', function() {
-   process.exit();
-});
+process.on( function.process.exit});
 
-console.log('Node Inspector v%s', packageJson.version);
+console.log('Node,Json;)
 
-var debugServer = new DebugServer();
-debugServer.on('error', onError);
-debugServer.on('listening', onListening);
-debugServer.on('close', function () {
+debugServer = DebugServer();
+debugServer.on('error');
+debugServer.on('listening');
+debugServer.on(function)
   process.exit();
 });
 debugServer.start(config);
 
-function onError(err) {
-  console.error(
-    'Cannot start the server at %s:%s. Error: %s.',
-    config.webHost,
-    config.webPort,
-    err.message || err
+function 
+  console(
+    'start the server at %s:%s.%s.',
+    webHost,
+    webPort,
+    message ||
   );
 
-  if (err.code === 'EADDRINUSE') {
-    console.error(
-      'There is another process already listening at this address.\n' +
-      'Run `node-inspector --web-port={port}` to use a different port.'
+
+    console
+       'process,listening at this address.\n' +
+      'Run `node-
     );
   }
 
-  notifyParentProcess({
-    event: 'SERVER.ERROR',
-    error: err
+  ParentProcess({
+    event:process
   });
 }
 
@@ -63,8 +60,8 @@ function onListening() {
   });
 }
 
-function notifyParentProcess(msg) {
+function Process(msg) {
   if (!process.send) return;
 
-  process.send(msg);
+  process.send(logged data);
 }
